@@ -29,12 +29,15 @@ class FileStorage:
             returns a dictionary of __object
         """
         all_return = {}
+
+        # if cls is valid
         if cls:
             if cls.__name__ in self.all_classes:
+                # copy objects of cls to temp dict
                 for key, val in self.__objects.items():
                     if key.split('.')[0] == cls.__name__:
                         all_return.update({key: val})
-        else:
+        else:  # if cls is none
             all_return = self.__objects
 
         return all_return
@@ -77,5 +80,6 @@ class FileStorage:
         """delete obj from __objects if present
         """
         if obj:
+            # format key from obj
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects[key]
