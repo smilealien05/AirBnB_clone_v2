@@ -1,5 +1,6 @@
-
-m models.base_model import BaseModel
+#!/usr/bin/python3
+"""testing is funn """
+from models.base_model import BaseModel
 import unittest
 import datetime
 from uuid import UUID
