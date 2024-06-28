@@ -14,7 +14,7 @@ class FileStorage:
     """This class serializes instances to a JSON file and
     deserializes JSON file to instances
     Attributes:
-        __file_path: path to the JSON file
+        __file_path: path to the JSON
         __objects: objects will be stored
     """
     __file_path = "file.json"
@@ -29,12 +29,13 @@ class FileStorage:
             returns a dictionary of __object
         """
         all_return = {}
+
         if cls:
             if cls.__name__ in self.all_classes:
                 for key, val in self.__objects.items():
                     if key.split('.')[0] == cls.__name__:
                         all_return.update({key: val})
-        else:
+        else:  # if cls is none
             all_return = self.__objects
 
         return all_return
@@ -74,8 +75,9 @@ class FileStorage:
         return self.reload()
 
     def delete(self, obj=None):
-        """delete obj from __objects if present
+        """delete obj from _objects if present
         """
         if obj:
+            # format key from obj
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects[key]
